@@ -3,7 +3,7 @@ displayName: "Karrier mod"
 name: "karrier-planet-mod"
 
 author: "programming:energonstarscrim(anybody),
-textures:retodera(f*cking raider),energonstarscrim(anybody)"
+textures:energonstarscrim(anybody)"
 
 main: "karrier.karriermod"
 
@@ -11,6 +11,6 @@ description: "ъ(you can create your mod i know it)"
 
 version: alpha
 
-minGameVersion: 145
+minGameVersion: 136
 
 java: true

@@ -23,12 +23,13 @@ import mindustry.world.blocks.liquid.LiquidJunction;
 import mindustry.world.blocks.liquid.LiquidRouter;
 import mindustry.world.blocks.power.ConsumeGenerator;
 import mindustry.world.blocks.power.PowerNode;
+import mindustry.world.blocks.power.ThermalGenerator;
 import mindustry.world.blocks.production.Drill;
 import mindustry.world.blocks.production.GenericCrafter;
 import mindustry.world.blocks.production.Pump;
 public class karrierblocks {
     public static Block oreTin,autoDrill,oreAluminum,oreLithium,physycalPump,chemicalGenerator,easyWall,largeeasyWall,tinRouter,tinSorter,tinConveyor,
-    tinliquidRouter,tinconduit,tinliquidJunction,tinjunction,coverer,beamwire,ignitor,motorDrill,delaminator,manganeseWall,largemanganeseWall;
+    tinliquidRouter,tinconduit,tinliquidJunction,tinjunction,coverer,beamwire,ignitor,motorDrill,delaminator,manganeseWall,largemanganeseWall,geothermalGenerator,easyArtilery;
 
     public static void load(){
         oreLithium = new OreBlock("ore-lithium", karrieritems.lithium){{
@@ -179,6 +180,42 @@ public class karrierblocks {
             health=280;
             consumeItems(with(Items.coal, 2));
             consumePower(3.5f);
+        }};
+        geothermalGenerator = new ThermalGenerator("geothermal-Generator"){{
+            requirements(Category.power, with(karrieritems.aluminum, 20, karrieritems.manganese, 65, karrieritems.graphene, 25));
+            powerProduction = 3.5f;
+            generateEffect = Fx.generatespark;
+            effectChance = 0.001f;
+            size = 2;
+            floating = true;
+        }};
+        easyArtilery = new ItemTurret("easy-artilery"){{
+            requirements(Category.turret, with(karrieritems.aluminum, 100, karrieritems.graphene, 20, karrieritems.coveredlithium, 10, karrieritems.manganese, 40));
+            ammo(
+                karrieritems.lithium, new BasicBulletType(1f, 72){{
+                    width = 10f;
+                    height = 20f;
+                    lifetime = 70f;
+                    ammoMultiplier = 1;
+                    frontColor = Color.valueOf("FFFFFF");
+                    makeFire = false;
+                    range = 200f;
+                    
+                }},
+                karrieritems.lithium, new BasicBulletType(0.7f, 144){{
+                    width = 5f;
+                    height = 10f;
+                    lifetime = 70f;
+                    ammoMultiplier = 1;
+                    frontColor = Color.valueOf("FF00FF");
+                    status = StatusEffects.slow;
+                    makeFire = false;
+                    range = 150f;}});
+            reload=200f;
+            range=500f;
+            health=350;
+            maxAmmo=1;
+            size = 2;
         }};
     }
 }
